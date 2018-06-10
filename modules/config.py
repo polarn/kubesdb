@@ -1,4 +1,5 @@
 import os
+import logging
 
 class Config:
     database_host = 'localhost'
@@ -18,3 +19,5 @@ class Config:
             self.database_user = os.environ["DATABASE_MASTER_USERNAME"]
         if "DATABASE_MASTER_PASSWORD" in os.environ and os.environ['DATABASE_MASTER_PASSWORD']:
             self.database_password = os.environ["DATABASE_MASTER_PASSWORD"]
+
+        logging.info("Config done")
