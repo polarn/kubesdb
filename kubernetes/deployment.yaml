@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubesdb
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubesdb
+  template:
+    metadata:
+      labels:
+        app: kubesdb
+    spec:
+      serviceAccountName: kubesdb
+      automountServiceAccountToken: true
+      containers:
+      - name: kubesdb
+        image: polarn/kubesdb:0.0.1
+        imagePullPolicy: Always
+        env:
+        - name: NAMESPACE
+          value: default
+        - name: LABEL
+          value: kubesdb
+        - name: DATABASE_HOSTNAME
+          valueFrom:
+            secretKeyRef:
+              name: rds
+              key: endpoint
+        - name: DATABASE_MASTER_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: rds
+              key: username
+        - name: DATABASE_MASTER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rds
+              key: password
