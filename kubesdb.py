@@ -16,7 +16,7 @@ import pymysql.cursors
 
 from modules.config import Config
 from modules.database import Database
-from modules.version import Version
+from modules.VERSION import Version
 
 logging.basicConfig(
     level=logging.INFO, # if appDebug else logging.INFO,
