@@ -20,4 +20,4 @@ class Config:
         if "DATABASE_MASTER_PASSWORD" in os.environ and os.environ['DATABASE_MASTER_PASSWORD']:
             self.database_password = os.environ["DATABASE_MASTER_PASSWORD"]
 
-        logging.info("Config done")
+        logging.info("Config done - database_host: %s, database_user: %s, namespace: %s, label: %s" % (self.database_host, self.database_user, self.namespace, self.label))

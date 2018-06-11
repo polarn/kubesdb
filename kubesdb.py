@@ -40,6 +40,8 @@ def watch_loop(db):
     v1 = kubernetes.client.CoreV1Api()
     w = kubernetes.watch.Watch()
 
+    logger.info("Watching for secrets in namespace %s with label %s" % (c.namespace, c.label))
+
     for event in w.stream(v1.list_namespaced_secret, c.namespace, label_selector=c.label):
 
         event_type = event['type']
