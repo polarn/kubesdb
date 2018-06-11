@@ -32,7 +32,11 @@ c = Config()
 logger.info("Starting up...")
 
 def watch_loop(db):
-    kubernetes.config.load_kube_config()
+    if "KUBERNETES_SERVICE_HOST" in os.environ:
+        kubernetes.config.load_incluster_config()
+    else:
+        kubernetes.config.load_kube_config()
+
     v1 = kubernetes.client.CoreV1Api()
     w = kubernetes.watch.Watch()
 
