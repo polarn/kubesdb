@@ -44,3 +44,4 @@ kubectl label secret kubesdb-secret kubesdb=true
 ### Kubernetes deployment
 In the repo there is an example file of how we use it: [kubernetes/deployment.yaml](kubernetes/deployment.yaml)
 
+test1
