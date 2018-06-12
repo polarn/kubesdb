@@ -8,6 +8,7 @@ import yaml
 import signal
 import sys
 import logging
+import time
 
 from base64 import b64decode
 import kubernetes
@@ -71,5 +72,7 @@ while True:
 
     except:
         logging.exception("could not watch for Kubernetes service changes")
+
+    time.sleep(5)
 
 print("End of script")
