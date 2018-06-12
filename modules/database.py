@@ -25,7 +25,7 @@ class Database:
             raise
 
     def create_database(self, database):
-        logging.info("Creating database: %s" % (database))
+        logging.debug("Creating database: %s" % (database))
         cursor = self.connection.cursor()
         rows_returned = cursor.execute("SHOW DATABASES LIKE '%s'" % (database))
         cursor.fetchall()
@@ -36,7 +36,7 @@ class Database:
             logging.info("Database %s created" % database)
 
     def create_user(self, username, password):
-        logging.info("Creating user: %s" % (username))
+        logging.debug("Creating user: %s" % (username))
         cursor = self.connection.cursor()
         rows_returned = cursor.execute("SELECT * FROM mysql.user WHERE user = '%s'" % (username))
         cursor.fetchall()
@@ -47,7 +47,7 @@ class Database:
             logging.info("User %s created" % username)
 
     def create_grant(self, database, username):
-        logging.info("Creating grant for user %s on database %s" % (username, database))
+        logging.debug("Creating grant for user %s on database %s" % (username, database))
         cursor = self.connection.cursor()
         cursor.execute("GRANT ALL PRIVILEGES ON `%s`.* TO '%s'@'%%'" % (database, username))
 
