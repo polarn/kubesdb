@@ -8,6 +8,7 @@ import yaml
 import signal
 import sys
 import logging
+import time
 
 from base64 import b64decode
 import kubernetes
@@ -52,7 +53,7 @@ def watch_loop(db):
                 database = b64decode(data['database']).decode("utf-8")
                 username = b64decode(data['username']).decode("utf-8")
                 password = b64decode(data['password']).decode("utf-8")
-                db.create_database(database, username, password)
+                db.create(database, username, password)
             else:
                 logging.info("Secret: %s %s - secret malformed" % (event_type, secret.metadata.name))
         else:
@@ -71,5 +72,7 @@ while True:
 
     except:
         logging.exception("could not watch for Kubernetes service changes")
+
+    time.sleep(5)
 
 print("End of script")
