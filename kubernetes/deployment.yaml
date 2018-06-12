@@ -17,7 +17,7 @@ spec:
       automountServiceAccountToken: true
       containers:
       - name: kubesdb
-        image: polarn/kubesdb:0.0.1
+        image: polarn/kubesdb:0.2.0
         imagePullPolicy: Always
         env:
         - name: NAMESPACE
