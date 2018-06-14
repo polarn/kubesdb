@@ -11,6 +11,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+COPY kubesdb-connect /usr/local/bin/kubesdb-connect
+
 USER kubesdb
 
 CMD [ "python", "./kubesdb.py" ]

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Connecting to database ${DATABASE_HOSTNAME}"
+mysql -h ${DATABASE_HOSTNAME} -u ${DATABASE_MASTER_USERNAME} -p${DATABASE_MASTER_PASSWORD}
